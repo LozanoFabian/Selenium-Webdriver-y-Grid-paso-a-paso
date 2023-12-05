@@ -2,6 +2,7 @@ package TestSelenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestJavaSelenium {
 
@@ -9,8 +10,8 @@ public class TestJavaSelenium {
 
 		WebDriver driver;
 		
-		System.setProperty("webdriver", "resources\\chromedriver.exe");
-		driver= new ChromeDriver();
+		System.setProperty("webdriver.gecko.driver", "resources\\geckodriver.exe");
+		driver= new FirefoxDriver();
 		driver.get("http://www.youtube.com");
 		
 		try {
@@ -20,7 +21,7 @@ public class TestJavaSelenium {
 			e.printStackTrace();
 		}
 		
-		driver.close();
+		driver.quit();
 	}
 
 }
