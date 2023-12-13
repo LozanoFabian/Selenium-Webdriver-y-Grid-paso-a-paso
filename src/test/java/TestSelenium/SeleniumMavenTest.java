@@ -14,6 +14,8 @@ public class SeleniumMavenTest {
 		driver= new FirefoxDriver();
 		driver.get("http://www.google.com");
 		
+		driver.manage().window().maximize();
+		
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
