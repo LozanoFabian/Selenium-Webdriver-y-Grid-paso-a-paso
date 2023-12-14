@@ -1,5 +1,7 @@
 package TestSelenium;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -10,9 +12,16 @@ public class SeleniumMaven {
 		
 		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");
 		driver= new FirefoxDriver();
-		driver.get("http://www.youtube.com");
+		driver.get("http://www.google.com");
 		
 		driver.manage().window().maximize();//Maximima la ventana
+		
+		//---------------------Localizadores
+		
+		driver.findElement(By.name("q")).sendKeys("A tester mate");
+		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+		
+		//--------------------Localizadores
 		
 		try {
 			Thread.sleep(5000);
@@ -24,38 +33,31 @@ public class SeleniumMaven {
 		driver.quit();
 	}
 	
-	//--------Explicacion Codigo------------------------
 	/*
-	1. WebDriver driver;: 
-	Declara una variable llamada driver del tipo WebDriver, 
-	que es la interfaz principal de Selenium WebDriver utilizada para interactuar con los navegadores.
+	1.driver.findElement(By.name("q")).sendKeys("A tester mate");
 
-	2.System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");:
-	Configura la propiedad del sistema para indicar la ubicación del controlador (driver) de Gecko (para Firefox). Esto es necesario para que Selenium pueda interactuar con el navegador Firefox. La ruta del controlador se establece en "src\test\resources\geckodriver.exe".
-
-	3.driver = new FirefoxDriver();: 
-	Crea una nueva instancia de FirefoxDriver, que implementa la interfaz WebDriver. 
-	Esto inicializa una nueva sesión de Firefox que será controlada por Selenium.
-
-	4.driver.get("http://www.youtube.com");: 
-	Abre el navegador Firefox y navega a la URL proporcionada, 
-	que en este caso es "http://www.youtube.com".
-
-	5.driver.manage().window().maximize();: 
-	Maximiza la ventana del navegador. 
-	Este método es utilizado para asegurarse de que la ventana del navegador esté en modo maximizado.
-
-	6.try { Thread.sleep(5000); } catch (InterruptedException e) { e.printStackTrace(); }: 
-	Introduce un bloque de espera de 5 segundos. 
-	Este bloque try-catch se utiliza para manejar la excepción InterruptedException que puede ocurrir cuando se utiliza Thread.sleep(). 
-	En este caso, simplemente imprime la traza de la pila si se produce la excepción.
-
-	7.driver.quit();: 
-	Cierra la sesión del navegador y libera los recursos asociados.
-	 Es importante cerrar el navegador al finalizar la prueba para liberar los recursos y 
-	 evitar que quede en ejecución en segundo plano.
+	driver: 
+	Esto es una instancia del WebDriver de Selenium que se utiliza para controlar el navegador web.
 	
-	* */
+	findElement(By.name("q")): 
+	Esto busca un elemento en la página web con el atributo "name" igual a "q". En este caso, parece estar buscando un campo de entrada de texto con el nombre "q".
+	
+	sendKeys("A tester mate"): 
+	Una vez que se encuentra el elemento, este método envía las teclas proporcionadas al elemento. 
+	En este caso, está escribiendo el texto "A tester mate" en el campo de entrada.
+	
+	2.driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+
+	Similar a la línea anterior, encuentra el mismo elemento en la página web.
+	
+	sendKeys(Keys.ENTER): 
+	Envia la tecla "Enter" al elemento, lo cual simula presionar la tecla Enter 
+	después de ingresar el texto en el campo de entrada.
+	
+	
+	En resumen, estas dos líneas de código están interactuando con un campo de búsqueda (posiblemente en un motor de búsqueda)
+	 al escribir "A tester mate" y luego presionar la tecla Enter para realizar la búsqueda.
+	  */
 	
 	
 
