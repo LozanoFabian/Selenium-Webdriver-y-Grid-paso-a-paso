@@ -18,8 +18,10 @@ public class SeleniumMaven {
 		
 		//---------------------Localizadores
 		
-		driver.findElement(By.name("q")).sendKeys("A tester mate");
-		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+		driver.findElement(By.id("L2AGLb")).click();//Usar un localizador por id
+		driver.findElement(By.name("q")).sendKeys("A tester mate");//Localizador por name
+		
+		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);//Localizador por name
 		
 		//--------------------Localizadores
 		
