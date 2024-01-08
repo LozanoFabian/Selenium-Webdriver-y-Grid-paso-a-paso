@@ -1,66 +1,66 @@
 package TestSelenium;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class SeleniumMaven {
 
 	public static void main(String[] args) {
+
+//Declarar el objeto WebDriver
 		WebDriver driver;
-		
+
+//Configurar la propiedad del controlador de Gecko (Firefox)
 		System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\geckodriver.exe");
-		driver= new FirefoxDriver();
-		driver.get("http://www.google.com");
-		
-		driver.manage().window().maximize();//Maximima la ventana
-		
-		//---------------------Localizadores
-		
-		driver.findElement(By.id("L2AGLb")).click();//Usar un localizador por id
-		driver.findElement(By.name("q")).sendKeys("A tester mate");//Localizador por name
-		
-		driver.findElement(By.name("q")).sendKeys(Keys.ENTER);//Localizador por name
-		
-		//--------------------Localizadores
-		
+
+//Inicializar el objeto WebDriver como un nuevo FirefoxDriver
+		driver = new FirefoxDriver();
+
+//Abrir la página web de YouTube
+		driver.get("http://www.youtube.com");
+
+//Maximizar la ventana del navegador
+		driver.manage().window().maximize();
+
+//Crear un objeto JavascriptExecutor para ejecutar scripts JavaScript
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+//Encontrar el elemento con el texto 'Reject all' mediante XPath
+		WebElement El2 = driver.findElement(By.xpath("//*[text()='Reject all']"));
+
+//Desplazar la vista hacia el elemento 'Reject all'
+		js.executeScript("arguments[0].scrollIntoView();", El2);
+
+//Hacer clic en el elemento 'Reject all'
+		El2.click();
+
+//Encontrar el elemento con el ID 'search' (barra de búsqueda) y escribir 'A tester mate'
+		driver.findElement(By.id("search")).sendKeys("A tester mate");
+
+//Encontrar el elemento con el ID 'search-icon-legacy' (ícono de búsqueda) y hacer clic en él
+		driver.findElement(By.id("search-icon-legacy")).click();
+
+//Esperar 2000 milisegundos (2 segundos) para dar tiempo a que se carguen los resultados
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+//Encontrar el elemento con el texto 'Estimación de Pruebas de Software' mediante XPath
+		WebElement El1 = driver.findElement(By.xpath("//*[text()='Estimación de Pruebas de Software']"));
+
+//Desplazar la vista hacia el elemento 'Estimación de Pruebas de Software'
+		js.executeScript("arguments[0].scrollIntoView();", El1);
+
+//Hacer clic en el elemento 'Estimación de Pruebas de Software'
+		El1.click();
+
+//Cerrar el navegador
 		driver.quit();
 	}
-	
-	/*
-	1.driver.findElement(By.name("q")).sendKeys("A tester mate");
-
-	driver: 
-	Esto es una instancia del WebDriver de Selenium que se utiliza para controlar el navegador web.
-	
-	findElement(By.name("q")): 
-	Esto busca un elemento en la página web con el atributo "name" igual a "q". En este caso, parece estar buscando un campo de entrada de texto con el nombre "q".
-	
-	sendKeys("A tester mate"): 
-	Una vez que se encuentra el elemento, este método envía las teclas proporcionadas al elemento. 
-	En este caso, está escribiendo el texto "A tester mate" en el campo de entrada.
-	
-	2.driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-
-	Similar a la línea anterior, encuentra el mismo elemento en la página web.
-	
-	sendKeys(Keys.ENTER): 
-	Envia la tecla "Enter" al elemento, lo cual simula presionar la tecla Enter 
-	después de ingresar el texto en el campo de entrada.
-	
-	
-	En resumen, estas dos líneas de código están interactuando con un campo de búsqueda (posiblemente en un motor de búsqueda)
-	 al escribir "A tester mate" y luego presionar la tecla Enter para realizar la búsqueda.
-	  */
-	
-	
 
 }
