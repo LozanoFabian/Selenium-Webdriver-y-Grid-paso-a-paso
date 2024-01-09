@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class SeleniumMaven {
 
@@ -20,28 +21,51 @@ public class SeleniumMaven {
 		driver = new FirefoxDriver();
 
 //Abrir la página web de YouTube
-		driver.get("http://www.youtube.com");
+		driver.get("https://www.atestermate.com/AutomationExample.php");
 
 //Maximizar la ventana del navegador
 		driver.manage().window().maximize();
+		
+//---------------------Inicio---------------------------------//	
+		
+/*
+1. Select comboPerfil=new Select(driver.findElement(By.name("profile")));:
 
-//Crear un objeto JavascriptExecutor para ejecutar scripts JavaScript
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+	Se está creando un objeto de la clase Select, 
+	que se utiliza para trabajar con elementos de tipo lista desplegable (dropdown) en Selenium.
+	
+	driver.findElement(By.name("profile")) encuentra el elemento de la página web con el nombre "profile" 
+	y lo pasa al constructor de Select.
+	
+2. comboPerfil.selectByVisibleText("Test Manager");:
 
-//Encontrar el elemento con el texto 'Reject all' mediante XPath
-		WebElement El2 = driver.findElement(By.xpath("//*[text()='Reject all']"));
+	Selecciona un elemento de la lista desplegable por su texto visible.
+	
+	En este caso, selecciona el elemento cuyo texto visible es "Test Manager".
 
-//Desplazar la vista hacia el elemento 'Reject all'
-		js.executeScript("arguments[0].scrollIntoView();", El2);
+3. comboPerfil.selectByValue("1236");:
 
-//Hacer clic en el elemento 'Reject all'
-		El2.click();
+	Selecciona un elemento de la lista desplegable por su atributo "value".
+	
+	En este caso, selecciona el elemento cuyo valor es "1236".
 
-//Encontrar el elemento con el ID 'search' (barra de búsqueda) y escribir 'A tester mate'
-		driver.findElement(By.id("search")).sendKeys("A tester mate");
+4. comboPerfil.selectByIndex(4);:
 
-//Encontrar el elemento con el ID 'search-icon-legacy' (ícono de búsqueda) y hacer clic en él
-		driver.findElement(By.id("search-icon-legacy")).click();
+	Selecciona un elemento de la lista desplegable por su índice.
+	
+	En este caso, selecciona el quinto elemento de la lista (los índices comienzan desde 0).
+ 
+ */		
+
+		Select comboPerfil=new Select (driver.findElement(By.name("profile")));
+		
+		comboPerfil.selectByVisibleText("Test Manager");
+		
+		comboPerfil.selectByValue("1236");
+		
+		comboPerfil.selectByIndex(4);
+		
+//---------------------Fin---------------------------------//			
 
 //Esperar 2000 milisegundos (2 segundos) para dar tiempo a que se carguen los resultados
 		try {
@@ -49,15 +73,6 @@ public class SeleniumMaven {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
-//Encontrar el elemento con el texto 'Estimación de Pruebas de Software' mediante XPath
-		WebElement El1 = driver.findElement(By.xpath("//*[text()='Estimación de Pruebas de Software']"));
-
-//Desplazar la vista hacia el elemento 'Estimación de Pruebas de Software'
-		js.executeScript("arguments[0].scrollIntoView();", El1);
-
-//Hacer clic en el elemento 'Estimación de Pruebas de Software'
-		El1.click();
 
 //Cerrar el navegador
 		driver.quit();
